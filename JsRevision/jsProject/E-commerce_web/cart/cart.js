@@ -1,6 +1,7 @@
 let cartContainer=document.querySelector('.cart-container')
 
 let cartProducts = JSON.parse(localStorage.getItem('products')) || [];
+;
 
 cartProducts.forEach( product => {
   let productCard = document.createElement("div");
