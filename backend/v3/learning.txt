@@ -1,0 +1,22 @@
+npm :---npm एक system है जो हमें दूसरों का लिखा हुआ JavaScript code (packages) install, manage और use करने देता है।
+
+package:---- 
+
+Package = Reusable JavaScript code
+
+Examples:
+express → server बनाने के लिए
+mongoose → MongoDB connect करने के लिए
+nodemon → auto restart server
+axios → API calls
+bcrypt → password encrypt
+
+हर package:
+npm registry पर publish होता है
+Versioned होता है
+Documentation के साथ आता है
+
+node_modules folder basically installed packages hai just and also un packages ke dependencies bhi install hote hai
+
+
+
