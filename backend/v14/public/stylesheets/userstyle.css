@@ -1,0 +1,103 @@
+/* ===== RESET ===== */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== PAGE LAYOUT ===== */
+body{
+  background: #f4f6f8;
+}
+a{
+  text-decoration: none;
+  color: white;
+  font-size: 10px;
+  background-color: #555;
+  padding: 5px;
+  border-radius: 5px;
+}
+/* outer container */
+.container{
+  width: 100%;
+  padding: 20px;
+}
+
+/* ===== CARDS GRID ===== */
+.cards{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  gap: 20px;
+  justify-items: center; /* center the scaled card in cell */
+}
+
+/* ===== PROFILE CARD ===== */
+.profile-card{
+  background: #fff;
+  border: 2px solid;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  
+  /* INITIAL SMALL SIZE */
+  transform: scale(0.6);  
+  transform-origin: center; /* zoom from center */
+}
+
+/* hover effect - DOUBLE SIZE */
+.profile-card:hover{
+  transform: scale(1.2);  /* double size approx */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  z-index: 10; /* stay on top */
+}
+
+/* profile image */
+.profile-card img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+/* name */
+.profile-card h3{
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+/* email */
+.profile-card .email{
+  font-size: 10px;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+/* description */
+.profile-card .desc{
+  font-size: 10px;
+  color: #555;
+  line-height: 1.2;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px){
+  .cards{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 800px){
+  .cards{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px){
+  .cards{
+    grid-template-columns: 1fr;
+  }
+}

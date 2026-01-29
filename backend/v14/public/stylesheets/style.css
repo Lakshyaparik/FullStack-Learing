@@ -1,0 +1,52 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body{
+  height: 100vh;
+  width: 100vw;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
+  margin: auto;
+  height: 70vh;
+}
+form{
+  background-color: rgb(49, 48, 48);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  border: 2px solid;
+  width: 50%;
+  padding: 20px;
+}
+form>h3{
+  margin-bottom: 10px;
+}
+form input{
+  margin: 5px;
+}
+.submit-btn{
+  background-color: skyblue;
+  cursor: pointer;
+  width: 80px;
+  height: 25px;
+  font-size: small;
+  padding-inline: 2px 8px;
+  margin-top: 20px;
+}
+.show-all-users{
+  background-color: red;
+  margin-top: 10px;
+  position: absolute;
+  left: 46%;
+  padding: 5px;
+}
