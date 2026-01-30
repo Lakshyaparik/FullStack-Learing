@@ -49,15 +49,15 @@ a{
 
 /* hover effect - DOUBLE SIZE */
 .profile-card:hover{
-  transform: scale(1.2);  /* double size approx */
+  transform: scale(1.5);  /* double size approx */
   box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   z-index: 10; /* stay on top */
 }
 
 /* profile image */
 .profile-card img{
-  width: 40px;
-  height: 40px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 8px;
