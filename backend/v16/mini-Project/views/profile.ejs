@@ -4,20 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    <link rel="stylesheet" href="/stylesheets/profile.css" />
   </head>
   <body>
-    <div class="container">
+    <div class="profile-data">
       <h1>this is your profile</h1>
       <h3>Your Email : <%=user.email%></h3>
       <h3>Your Name : <%=user.name%></h3>
-      <p>Your data:</p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae iure
-        quibusdam corporis hic, maxime a animi nesciunt deleniti modi harum qui
-        consequuntur pariatur dolorem? Totam eos recusandae aspernatur
-        doloremque ipsam.
-      </p>
-      <a href="/logout">Log-out</a>
+    </div>
+    <div class="container">
+      <a class="logoutbtn" href="/logout">Log-out</a>
+      <a class="postsbtn" href="/my-posts">Your Posts</a>
+      <h2>Create Your Post</h2>
+      <br />
+      <form action="/create-post" method="post">
+        <label for="title"
+          >Post title: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label
+        >
+        <input type="text" placeholder="Enter Title Here..." name="title" />
+        <br />
+        <label for="description">description :</label>
+        <textarea
+          name="description"
+          placeholder="Enter Description Here... "
+        ></textarea>
+        <br />
+        <button class="subbtn" type="submit">Submit</button>
+      </form>
     </div>
   </body>
 </html>

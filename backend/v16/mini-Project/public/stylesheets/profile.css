@@ -1,0 +1,92 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+  background-color: red;
+  color: #fff;
+  padding: 10px 20px;
+  border: solid;
+  border-radius:2px;
+}
+button{
+  background-color: skyblue;
+  color: #fff;
+}
+.profile-data{
+  width: 100vw;
+  height: 30vh;
+  border: 2px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  padding: 20px;
+  margin: 10px;
+}
+.container{
+  width: 100%;
+  height: 70vh;
+  border: 2px solid;
+  padding: 20px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+.logoutbtn{
+  position: absolute;
+  top: 35%;
+  right: 1%;
+}
+form{
+  display: flex;
+  flex-flow: column wrap;
+
+  border: solid;
+  width: 40%;
+  padding: 50px;
+}
+form input{
+  margin: 20px;
+  padding: 10px;
+  height: 80px;
+  font-size: larger;
+}
+form textarea{
+  resize: none;
+  height: 200px;
+  font-size: x-large;
+}
+.subbtn{
+ height: 70px;
+ font-size: larger;
+ width: 100px;
+ position: relative;
+ left: 45%;
+}
+.postsbtn{
+  position: absolute;
+  top: 40%;
+  right: 1%;
+  font-size: small;
+  margin-top: 10px;
+  background-color: rgb(255, 255, 0);
+}
+.post{
+  border: solid;
+  width: 300px;
+  padding: 20px;
+  margin: 10px;
+  height: 400px;
+  display: flex;
+  flex-flow: row wrap;
+  background-color: gray;
+}
+.post p{
+  font-size: 20px;
+}

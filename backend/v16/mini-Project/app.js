@@ -60,6 +60,21 @@ app.get('/home', (req, res) => {
   res.render('home')
 })
 
+app.get('/my-posts',isLoggedIN, async(req, res) => {
+  let user = await userModel.findOne({email: req.user.email})
+  if(!user){
+    return res.status(404).json({
+      message: "user not found in db",
+      success: false
+    });
+  }
+
+  let posts = await postModel.find({user: user._id})
+  console.log(posts);
+  
+  res.render('my-posts',{posts})
+})
+
 app.get('/logout', (req, res) => {
   res.cookie('token',"")
   res.redirect('/')
@@ -76,6 +91,29 @@ app.get('/profile',isLoggedIN,async(req,res)=>{
 
       res.render('profile',{user})  //if user is existed show he/her profile 
     
+})
+
+//create post
+app.post('/create-post',isLoggedIN,async(req,res)=>{
+  let {title,description}= req.body
+  let user = await userModel.findOne({email: req.user.email})
+  if(!user)
+    return res.status(404).json({
+      message: "user not found in db",
+      success: false
+    })
+
+  let post = await postModel.create({
+    title,
+    description,
+    user: user._id
+    
+  })
+
+  user.posts.push(post._id)
+  await user.save()
+  
+  res.redirect('/my-posts')
 })
 // post requests
 
