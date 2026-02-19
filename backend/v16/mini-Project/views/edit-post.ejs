@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="/stylesheets/profile.css" />
+  </head>
+  <body>
+    <div class="container" style="flex-direction: row !important; gap: 200px;">
+      <h2>Edit Your Post</h2>
+        <% post.forEach(function(post) { %>
+      <div class="post">
+         <span style="margin-left: 20%; font-size: x-large;">Your Old Post</span>
+         <h1><%= post.title %></h1>
+         <p><%= post.description %></p>
+
+      </div>
+
+      <form action="/update-post/<%= post._id %>" method="post">
+        <label style="margin-left: 40%; font-size: xx-large;">You New Post</label>
+        <label for="title"
+          >Post title: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label
+        >
+        <input type="text" placeholder="Enter Title Here..." name="title" />
+        <br />
+        <label for="description">description :</label>
+        <textarea
+          name="description"
+          placeholder="Enter Description Here... "
+        ></textarea>
+        <br />
+        <button class="subbtn" type="submit">Submit</button>
+      </form>
+<% }) %>
+    </div>
+  </body>
+</html>

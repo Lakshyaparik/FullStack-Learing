@@ -60,39 +60,78 @@ app.get('/home', (req, res) => {
   res.render('home')
 })
 
-app.get('/my-posts',isLoggedIN, async(req, res) => {
-  let user = await userModel.findOne({email: req.user.email})
-  if(!user){
-    return res.status(404).json({
-      message: "user not found in db",
-      success: false
-    });
-  }
-
-  let posts = await postModel.find({user: user._id})
-  console.log(posts);
-  
-  res.render('my-posts',{posts})
-})
-
 app.get('/logout', (req, res) => {
   res.cookie('token',"")
   res.redirect('/')
 })
-
+//user profile showing
 app.get('/profile',isLoggedIN,async(req,res)=>{
+  
+  const user = await userModel.findOne({email: req.user.email})  //find user in db via decoded info
+  if(!user)
+    return res.status(404).json({
+  message: "user not found in db",
+  success: false
+});
 
-    const user = await userModel.findOne({email: req.user.email})  //find user in db via decoded info
-    if(!user)
-      return res.status(404).json({
-        message: "user not found in db",
-        success: false
-      });
+res.render('profile',{user})  //if user is existed show he/her profile 
+})
+//user posts showing code
+app.get('/my-posts',isLoggedIN, async(req, res) => {
+  let user = await userModel.findOne({email: req.user.email}).populate('posts')
+  if(!user){
+    return res.status(404).json({
+      message: "user not found",
+      success: false
+    })
+  }
+  res.render('my-posts',{user})
 
-      res.render('profile',{user})  //if user is existed show he/her profile 
-    
+})
+//user edit post route
+app.get('/edit-post/:id',async (req, res) => {
+  let post = await postModel.find({_id: req.params.id})
+  if(!post){
+    return res.status(404).json({
+      message: "post not found",
+      success: false
+    })
+  }
+  res.render('edit-post',{post})
 })
 
+//delete post route
+app.get('/delete-post/:id',async (req,res)=>{
+  await postModel.findByIdAndDelete(req.params.id)
+  res.redirect('/my-posts')
+})
+
+//like post route
+app.get('/like-post/:id',isLoggedIN,async(req,res)=>{
+
+  let user = await userModel.findOne({email: req.user.email})
+  let post = await postModel.findOne({_id: req.params.id})
+  if(post.like.indexOf(user._id) === -1){
+    // -1 is get when user has not liked the post because indexOf return -1 when element is not found in array
+    post.like.push(user._id)
+  }
+  else{
+    post.like.splice(post.like.indexOf(user._id),1)//splice is used to remove element from array by index
+  }
+  await post.save()
+  res.redirect('/my-posts')
+})
+
+//update post route
+app.post('/update-post/:id',async(req,res)=>{
+  let {title,description}= req.body
+  let updatedPost = await postModel.findByIdAndUpdate(req.params.id,{
+    title,
+    description
+  },{new:true})
+
+  res.redirect('/my-posts')
+})
 //create post
 app.post('/create-post',isLoggedIN,async(req,res)=>{
   let {title,description}= req.body

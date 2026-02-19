@@ -17,9 +17,9 @@ const postSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
-  like:{
+  like:[{
     type : mongoose.Schema.Types.ObjectId, ref: 'user'
-  }
+  }]
 })
 
 module.exports = mongoose.model('post',postSchema)
