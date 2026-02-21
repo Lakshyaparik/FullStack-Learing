@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="/stylesheets/test.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Upload File</h2>
+      <br />
+      <form action="/upload-file" method="post" enctype="multipart/form-data">
+        <%#enctype="multipart/form-data" is used to send files in chunks format
+        to the server %>
+        <input type="file" name="image" />
+        <br /><br>
+        <button class="subbtn" type="submit" value="upload file">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
