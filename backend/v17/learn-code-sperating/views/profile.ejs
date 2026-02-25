@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="/stylesheets/profile.css" />
+  </head>
+  <body>
+    <div class="profile-data">
+      <div class="profile-pic">
+        <img src="/uploads/images/<%=user.profilePic %>" alt="" />
+      </div>
+      <br />
+      <a href="/user/upload-profilePic">Profile Pic</a>
+      <br />
+      <h1>this is your profile</h1>
+      <h3>Your Email : <%=user.email%></h3>
+      <h3>Your Name : <%=user.name%></h3>
+    </div>
+    <div class="container">
+      <a class="logoutbtn" href="/logout">Log-out</a>
+      <a class="postsbtn" href="/user/my-posts">Your Posts</a>
+      <h2>Create Your Post</h2>
+      <br />
+      <form action="/post/create-post" method="post">
+        <label for="title"
+          >Post title: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label
+        >
+        <input type="text" placeholder="Enter Title Here..." name="title" />
+        <br />
+        <label for="description">description :</label>
+        <textarea
+          name="description"
+          placeholder="Enter Description Here... "
+        ></textarea>
+        <br />
+        <button class="subbtn" type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
