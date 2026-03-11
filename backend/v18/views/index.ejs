@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Royal Cozy Auth</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #1b1f3b, #2e325a, #3e4375);
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* CONTAINER */
+      .container {
+        display: flex;
+        gap: 120px;
+        padding: 60px 80px;
+      }
+
+      /* CARD */
+      .card {
+        width: 350px;
+        padding: 45px;
+        background: white;
+        border-radius: 22px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        transition: 0.4s ease;
+        position: relative;
+      }
+
+      /* BLUR EFFECT CLASS */
+      .card.blur {
+        filter: blur(4px);
+        opacity: 0.6;
+        transform: scale(0.97);
+      }
+
+      /* HOVER LIFT */
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      }
+
+      /* HEADINGS */
+      .card h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #2b2b45;
+        font-weight: 600;
+        position: relative;
+      }
+
+      .card h2::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 3px;
+        background: #c9a227;
+        margin: 8px auto 0;
+        border-radius: 3px;
+      }
+
+      /* INPUTS */
+      .input-group {
+        margin-bottom: 20px;
+      }
+
+      .input-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+        color: #555;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        outline: none;
+        transition: 0.3s;
+        background: #f9f9f9;
+      }
+
+      .input-group input:focus {
+        border-color: #c9a227;
+        background: #fff;
+        box-shadow: 0 0 6px rgba(201, 162, 39, 0.3);
+      }
+
+      /* BUTTON */
+      button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: #c9a227;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #b28f1f;
+        box-shadow: 0 8px 20px rgba(201, 162, 39, 0.4);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        .container {
+          flex-direction: column;
+          gap: 50px;
+          padding: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- REGISTER -->
+      <div class="card" id="registerCard">
+        <h2>Register</h2>
+        <form id="registerForm" action="/auth/register" method="POST">
+          <div class="input-group">
+            <label>Fullname</label>
+            <input type="text" name="fullname" required />
+          </div>
+          <div class="input-group">
+            <label>Email</label>
+            <input type="email" name="email" required />
+          </div>
+          <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" required />
+          </div>
+          <div class="input-group">
+            <label>Contact</label>
+            <input type="contact" name="contact" required />
+          </div>
+          <button type="submit">Create Account</button>
+        </form>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="card" id="loginCard">
+        <h2>Login</h2>
+        <form id="loginForm" action="/auth/login" method="POST">
+          <div class="input-group">
+            <label>Email</label>
+            <input type="email" name="email" required />
+          </div>
+          <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" required />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const registerCard = document.getElementById("registerCard");
+      const loginCard = document.getElementById("loginCard");
+
+      /* Hover Blur Effect */
+      loginCard.addEventListener("mouseenter", () => {
+        registerCard.classList.add("blur");
+      });
+      loginCard.addEventListener("mouseleave", () => {
+        registerCard.classList.remove("blur");
+      });
+
+      registerCard.addEventListener("mouseenter", () => {
+        loginCard.classList.add("blur");
+      });
+      registerCard.addEventListener("mouseleave", () => {
+        loginCard.classList.remove("blur");
+      });
+
+      /* Clear inputs after submit */
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function () {
+          setTimeout(() => {
+            this.reset();
+          }, 100);
+        });
+
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", function () {
+          setTimeout(() => {
+            this.reset();
+          }, 100);
+        });
+    </script>
+  </body>
+</html>

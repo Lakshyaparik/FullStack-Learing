@@ -14,8 +14,8 @@ const productSchema = new mongoose.Schema({
       required: true
     },
     image:{
-      type: String,
-      required: true
+      data : Buffer,
+      contentType: String
     },
     category:{
       type: String,
@@ -23,15 +23,12 @@ const productSchema = new mongoose.Schema({
     },
     bgcolor:{
       type: String,
-      required: true
     },
     panelcolor:{
       type: String,
-      required: true
     },
     textcolor:{
       type: String,
-      required: true
     }
 })
   
