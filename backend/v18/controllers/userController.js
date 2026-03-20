@@ -2,9 +2,13 @@ const userModel = require('../models/userModel')
 
 exports.addToCart = async(userEmail,productId)=>{
   const user = await userModel.findOne({email:userEmail})
-  await user.cart.push(productId)
+  if(!(user.cart.indexOf(productId) === -1)){
+    isCarted = true
+    return isCarted
+  }
+  user.cart.push(productId)
   await user.save()
-  return 
+  return isCarted
 }
 
 exports.getCartProducts = async(userEmail)=>{
@@ -13,4 +17,8 @@ exports.getCartProducts = async(userEmail)=>{
   .populate('cart')
 
   return user.cart
+}
+
+exports.getProfile =async (user)=>{
+  
 }

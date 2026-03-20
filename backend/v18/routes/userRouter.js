@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const {isLoggedIn} = require('../middlewares/isLoggedIn')
 const {getAllProducts} = require('../controllers/productController');
-const {addToCart,getCartProducts} = require('../controllers/userController')
-const { get } = require('mongoose');
+const {addToCart,getCartProducts,getProfile} = require('../controllers/userController')
+
 
 router.get('/', (req, res) => {
     res.send('user Router')
@@ -15,12 +15,21 @@ router.get('/shop',isLoggedIn,async(req,res)=>{
 })
 
 router.get('/addToCart/:id',isLoggedIn,async (req,res)=>{
-    addToCart(req.user.email,req.params.id)
+    isCarted = await addToCart(req.user.email,req.params.id)
     res.redirect('/users/shop')
 })
 
 router.get('/cart',isLoggedIn,async(req,res)=>{
    const cartProducts = await getCartProducts(req.user.email)
-   res.render('cart',{cartProducts})
+   let totalPrice = 0;
+   cartProducts.forEach( product => {
+    totalPrice= product.price + totalPrice
+   });   
+   res.render('cart',{cartProducts,totalPrice})
+})
+
+router.get('/profile',isLoggedIn,(req,res)=>{
+    getProfile(req.user)
+    res.render('profile')
 })
 module.exports = router;

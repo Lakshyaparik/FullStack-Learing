@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #1e1e2f, #3a3a5a);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+      }
+
+      .profile-card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        border-radius: 20px;
+        width: 350px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: 0.3s;
+      }
+
+      .profile-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .profile-img {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        object-fit: cover;
+        margin-bottom: 15px;
+      }
+
+      .profile-name {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .profile-email {
+        font-size: 14px;
+        color: #ccc;
+        margin-bottom: 20px;
+      }
+
+      .profile-info {
+        text-align: left;
+        margin-top: 15px;
+      }
+
+      .profile-info p {
+        margin: 10px 0;
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .profile-info span {
+        color: #ddd;
+      }
+
+      .buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.3s;
+      }
+
+      .edit-btn {
+        background: #4caf50;
+        color: white;
+      }
+
+      .edit-btn:hover {
+        background: #45a049;
+      }
+
+      .logout-btn {
+        background: #e53935;
+        color: white;
+      }
+
+      .logout-btn:hover {
+        background: #c62828;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="profile-card">
+      <!-- Profile Image -->
+      <img src="https://via.placeholder.com/150" class="profile-img" />
+
+      <!-- Name & Email -->
+      <div class="profile-name">Lakshya Pareek</div>
+      <div class="profile-email">lakshya@email.com</div>
+
+      <!-- Info -->
+      <div class="profile-info">
+        <p>Contact <span>+91 9876543210</span></p>
+        <p>Role <span>User</span></p>
+        <p>Location <span>India</span></p>
+      </div>
+
+      <!-- Buttons -->
+      <div class="buttons">
+        <button class="btn edit-btn">Edit Profile</button>
+        <button class="btn logout-btn">Logout</button>
+      </div>
+    </div>
+  </body>
+</html>

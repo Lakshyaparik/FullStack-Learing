@@ -76,13 +76,32 @@ body{
 .cart-item button:hover{
   background:#e60000;
 }
+
+.Price{
+  border: 2px solid;
+  width: 400px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-evenly;
+  padding: 20px 13px;
+  background-color: rgba(185, 185, 32, 0.889);
+}
+.Price span{
+  font-size: larger;
+}
     </style>
   </head>
   <body>
+    <a href="/users/shop" style="text-decoration: none; color: white; background: gray; font-size: medium; 
+    padding: 5px;">Go To shop</a>
     <h1>Your Cart</h1>
-
+<div class="Price">
+  <span>Total Price</span>
+  <span><%=totalPrice %></span>
+  <br>
+  <button>Buy Now</button>
+</div>
 <div class="cart-container">
-
 <% cartProducts.forEach(function(product){ %>
 
 <div class="cart-item">
@@ -100,7 +119,6 @@ body{
 </div>
 
 <% }) %>
-
 </div>
   </body>
 </html>

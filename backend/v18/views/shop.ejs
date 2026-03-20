@@ -46,7 +46,9 @@
         transition: 0.3s
 
       }
-
+      .nav-anchor{
+        color: red;
+      }
       .logout-anchor{
         color: red;
       }
@@ -176,7 +178,7 @@
         <ul class="nav-links">
           <li><a class="nav-anchor" href="">Home</a></li>
           <li><a class="nav-anchor" href="/users/cart">Cart</a></li>
-          <li><a class="nav-anchor" href="">Profile</a></li>
+          <li><a class="nav-anchor" href="/users/profile">Profile</a></li>
           <li><a class="nav-anchor logout-anchor" href="">Logout</a></li>
         </ul>
       </nav>
@@ -201,7 +203,12 @@
   <h3><%= product.name %></h3>
   <h4>₹<%= product.price %></h4>
   <p><%= product.description %></p>
-  <a href="/users/addToCart/<%= product._id %>"><button>Add to Cart</button></a>
+
+  <a href="/users/addToCart/<%= product._id %>">
+  <button>
+    Add to Cart
+  </button>
+</a>
 </div>
 
 <% }) %>
