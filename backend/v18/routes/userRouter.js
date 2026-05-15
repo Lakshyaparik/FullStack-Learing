@@ -3,6 +3,7 @@ const router = express.Router();
 const {isLoggedIn} = require('../middlewares/isLoggedIn')
 const {getAllProducts} = require('../controllers/productController');
 const {addToCart,getCartProducts,getProfile} = require('../controllers/userController')
+const { removeFromCart } = require('../controllers/userController');
 
 
 router.get('/', (req, res) => {
@@ -31,5 +32,10 @@ router.get('/cart',isLoggedIn,async(req,res)=>{
 router.get('/profile',isLoggedIn,(req,res)=>{
     getProfile(req.user)
     res.render('profile')
+})
+
+router.get('/cart/removeProduct/:id',isLoggedIn,async(req,res)=>{
+    removeFromCart(req.user.email,req.params.id)
+    // res.redirect('/users/cart')
 })
 module.exports = router;

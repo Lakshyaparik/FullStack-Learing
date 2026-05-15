@@ -1,4 +1,5 @@
 require('dotenv').config()
+const db = require('../config/mongooseCon')
 const userModel = require('../models/userModel')
 const bcrypt = require('bcrypt')
 const {generateToken} = require('../utils/generateToken')

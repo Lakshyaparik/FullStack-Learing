@@ -1,5 +1,5 @@
 const userModel = require('../models/userModel')
-
+let isCarted = false;
 exports.addToCart = async(userEmail,productId)=>{
   const user = await userModel.findOne({email:userEmail})
   if(!(user.cart.indexOf(productId) === -1)){
@@ -20,5 +20,10 @@ exports.getCartProducts = async(userEmail)=>{
 }
 
 exports.getProfile =async (user)=>{
+  
+}
+
+exports.removeFromCart = async(email,productId)=>{
+  const user = await userModel.findONe({email})
   
 }

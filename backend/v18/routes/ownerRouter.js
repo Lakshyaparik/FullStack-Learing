@@ -9,7 +9,9 @@ const productModel = require('../models/productModel')
 //route for create owner in development environment
 if(process.env.NODE_ENV ==="development")
 {
-    router.post('/create-owner',async (req,res)=>{
+    console.log('dev entered');
+    
+    router.post('/register',async (req,res)=>{
 
         if(await ownerModel.countDocuments() > 0)
         return res.status(400).send("Service is not available")
@@ -25,8 +27,19 @@ if(process.env.NODE_ENV ==="development")
     })
 }
 
+router.post('/login',async(req,res)=>{
+    const owner = await ownerModel.findOne({email : req.body.email})
+    console.log(owner);
+    
+    if(!owner){
+        return res.json('owner not found')
+    }
+    if(owner.password == req.body.password)
+    res.redirect('/owners/createProduct')
+    
+})
 router.get('/', (req, res) => {
-    res.json('owner router')
+    res.render('owner')
 })
 
 router.get('/createProduct',(req,res)=>{
@@ -48,7 +61,7 @@ router.post('/createProduct',upload.single('image'),async(req,res)=>{
                 contentType : req.file.mimetype                
             }
         })
-        res.redirect('/owner')
+        res.redirect('/owners/createProduct')
         
     }
     catch(err){

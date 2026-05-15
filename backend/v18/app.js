@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('./config/mongooseCon.js')
+const connectDB = require('./config/mongooseCon.js')
 const app = express();
 const userRouter = require('./routes/userRouter.js')
 const productRouter = require('./routes/productRouter.js')
@@ -34,7 +34,9 @@ app.get('/logout',(req,res)=>{
   res.redirect('/')
 })
 
-app.listen(3000);
+connectDB().then(()=>{
+  app.listen(3000);
+})
 
 //      /  -->  login & signup
 

@@ -95,30 +95,32 @@ body{
     <a href="/users/shop" style="text-decoration: none; color: white; background: gray; font-size: medium; 
     padding: 5px;">Go To shop</a>
     <h1>Your Cart</h1>
-<div class="Price">
-  <span>Total Price</span>
-  <span><%=totalPrice %></span>
-  <br>
-  <button>Buy Now</button>
-</div>
-<div class="cart-container">
-<% cartProducts.forEach(function(product){ %>
-
-<div class="cart-item">
-
-    <img 
-    src="data:<%= product.image.contentType %>;base64,<%= product.image.data.toString('base64') %>" 
-    width="150">
-
-    <h3><%= product.name %></h3>
-
-    <p>Price: ₹<%= product.price %></p>
-
-    <button>Remove</button>
-
-</div>
-
-<% }) %>
-</div>
+    <div class="cart-container">
+      <% cartProducts.forEach(function(product){ %>
+        
+        <div class="cart-item">
+          
+          <img 
+          src="data:<%= product.image.contentType %>;base64,<%= product.image.data.toString('base64') %>" 
+          width="150">
+          
+          <h3><%= product.name %></h3>
+          
+          <p>Price: ₹<%= product.price %></p>
+          
+          <form action="/users/cart/removeProduct/<%= product._id %>" method="get">
+            <button type="submit">Remove</button>
+          </form>
+          
+        </div>
+        
+        <% }) %>
+      </div>
+      <div class="Price">
+        <span>Total Price</span>
+        <span><%= totalPrice %></span>
+        <br>
+        <button>Buy Now</button>
+      </div>
   </body>
 </html>
