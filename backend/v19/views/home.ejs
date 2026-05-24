@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop Page</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
+      }
+
+      .main {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+      }
+
+      /* LEFT SIDEBAR */
+
+      .sidebar {
+        width: 30%;
+        background-color: white;
+        padding: 30px;
+        border-right: 1px solid #ddd;
+      }
+
+      .sidebar h2 {
+        margin-bottom: 25px;
+        font-size: 28px;
+      }
+
+      .category {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .category button {
+        padding: 14px;
+        border: none;
+        background-color: #f1f1f1;
+        cursor: pointer;
+        border-radius: 10px;
+        text-align: left;
+        font-size: 16px;
+        transition: 0.3s;
+      }
+
+      .category button:hover {
+        background-color: black;
+        color: white;
+      }
+
+      /* RIGHT PRODUCTS */
+
+      .products {
+        width: 70%;
+        padding: 30px;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 25px;
+      }
+
+      .card {
+        width: 300px;
+        height: 350px;
+        background-color: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        padding: 5px;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 15px;
+      }
+
+      .card-content h3 {
+        margin-bottom: 10px;
+      }
+
+      .price {
+        color: green;
+        font-weight: bold;
+        margin-bottom: 12px;
+      }
+
+      .card-content button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background-color: black;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .card-content button:hover {
+        background-color: #333;
+      }
+
+      /* RESPONSIVE */
+
+      @media (max-width: 900px) {
+        .main {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+        }
+
+        .products {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <!-- LEFT SIDEBAR -->
+
+      <div class="sidebar">
+        <h2>Categories</h2>
+
+        <div class="category">
+          <button onclick="filterProducts('all')">All Products</button>
+
+          <button onclick="filterProducts('shoes')">Shoes</button>
+
+          <button onclick="filterProducts('tshirt')">T-Shirts</button>
+
+          <button onclick="filterProducts('hoodie')">Hoodies</button>
+        </div>
+      </div>
+
+      <!-- RIGHT PRODUCTS -->
+
+      <div class="products" id="products">
+        <!-- CARD -->
+
+        <div class="card" data-category="hoodie">
+          <img src="" alt="" />
+
+          <div class="card-content">
+            <h3>Gray Hoodie</h3>
+
+            <p class="price">₹1499</p>
+
+            <button>Add To Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function filterProducts(category) {
+        let cards = document.querySelectorAll(".card");
+
+        cards.forEach(function (card) {
+          if (category === "all") {
+            card.style.display = "block";
+          } else if (card.dataset.category === category) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
