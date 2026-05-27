@@ -17,9 +17,7 @@ router.get('/createProduct',isLoggedIn,(req,res)=>{
   res.render('createProduct')
 })
 
-router.post('/createProduct',isLoggedIn,upload.single('productImage'),(req,res)=>{
-  console.log('body : ',req.body)
-  console.log('file : ',req.file)
+router.post('/createProduct',isLoggedIn,upload.single('productImage'),createProduct,(req,res)=>{
 })
 
 module.exports = router;

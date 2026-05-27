@@ -1,7 +1,7 @@
 const userModel = require('../models/userModel')
-exports.getProducts = (email)=>{
+const productModel = require('../models/productModel')
+exports.getProducts = ()=>{
 }
-exports.createProduct = (req,res)=>{
-  // console.log('body : ',req.body)
-  // console.log('file : ',req.file)
+exports.createProduct = async(req,res)=>{
+  let {title,price} = req.body;
 }
