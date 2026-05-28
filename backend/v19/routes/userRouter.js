@@ -8,9 +8,7 @@ router.get('/',(req,res)=>{
   res.send('User Route')
 })
 
-router.get('/home',isLoggedIn,(req,res)=>{
-  getProducts(req.user.email)
-  res.render('home')
+router.get('/home',isLoggedIn,getProducts,(req,res)=>{
 })
 
 router.get('/createProduct',isLoggedIn,(req,res)=>{

@@ -11,13 +11,12 @@ const productSchema = mongoose.Schema({
     required : true
   },
   image : {
-    type : Buffer,
-    required : true
+    data : Buffer,
+    contentType : String
   },
   email : {
     type : String,
     required : true,
-    unique : true
   }
 })
 

@@ -34,34 +34,45 @@ exports.register = async (req, res)=>{
     return res.redirect('/user/home')
   })
 }
-exports.login = (req, res)=>{
-  let {email,password} = req.body
-  userModel.findOne({email})
-  .then(user=>{
-    if(!user){
-      res.send('User not found')
-      return res.redirect('/auth')
-    }
+exports.login = async (req, res) => {
 
-    bcrypt.compare(password,user.password,(err,result)=>{
-      if(err)
-      {
-        console.log('error',err);
-      }
-      if(!result){
-       return res.redirect('/auth')
+  let { email, password } = req.body
+
+  await userModel.findOne({ email })
+
+  .then( user => {
+
+      if (!user) {
+        return res.redirect('/auth')
       }
 
-      let token = jwt.sign({
-        email : user.email,
-        fullname : user.fullname,
-      },process.env.JWT_SECRET_KEY)
+      bcrypt.compare(password, user.password, (err, result) => {
 
-      res.cookie('token',token)
-      return res.redirect('/user/home')
+        if (err) {
+          console.log(err)
+          return res.send("Something went wrong")
+        }
+
+        if (!result) {
+          return res.redirect('/auth')
+        }
+
+        let token = jwt.sign({
+
+          email: user.email,
+          fullname: user.fullname
+
+        }, process.env.JWT_SECRET_KEY)
+
+        res.cookie('token', token)
+        return res.redirect('/user/home')
+
+      })
+
     })
-  })
-  .catch(err=>{
-    console.log(err);
-  })
+
+    .catch(err => {
+      console.log(err)
+    })
+
 }

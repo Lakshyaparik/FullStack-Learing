@@ -3,7 +3,6 @@ const app = express()
 const db = require('./config/db')
 const cookieParser = require('cookie-parser')
 
-
 const authRouter = require('./routes/authRouter')
 const userRouter = require('./routes/userRouter')
 
