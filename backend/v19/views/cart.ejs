@@ -24,21 +24,6 @@
         min-height: 100vh;
         display: flex;
       }
-
-      /* LEFT SIDEBAR */
-
-      .sidebar {
-        width: 30%;
-        background-color: white;
-        padding: 30px;
-        border-right: 1px solid #ddd;
-      }
-
-      .sidebar h2 {
-        margin-bottom: 25px;
-        font-size: 28px;
-      }
-
       .category {
         display: flex;
         flex-direction: column;
@@ -64,12 +49,12 @@
       /* RIGHT PRODUCTS */
 
       .products {
-        margin-top: 30px;
-        width: 70%;
+        margin-top: 70px;
+        width: 100%;
         padding: 30px;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 25px;
+        display: flex;
+        flex-flow: row wrap;
+        gap: 30px;
       }
       .navbar{
         display: flex;
@@ -160,28 +145,15 @@
   </head>
   <body>
     <div class="main">
+      <h1 style="position:absolute;top:10px;left:30px;"
+      >Cart Page</h1>
      <nav class="navbar">
       <a href="/user/home"><li >Home</li></a>
       <a href="/user/cart"><li >Cart</li></a>
       <a href="/user/profile"><li >Profile</li></a>
       <a href="/user/logout"><li >Logout</li></a>
       </nav>
-      <!-- LEFT SIDEBAR -->
-      <div class="sidebar">
-        <h2>Categories</h2>
-
-        <div class="category">
-          <button onclick="filterProducts('all')">All Products</button>
-
-          <button onclick="filterProducts('shoes')">Shoes</button>
-
-          <button onclick="filterProducts('tshirt')">T-Shirts</button>
-
-          <button onclick="filterProducts('hoodie')">Hoodies</button>
-        </div>
-      </div>
       <!-- RIGHT PRODUCTS -->
-
     <div class="products" id="products">
 
   <% products.forEach(product=>{ %>
@@ -197,19 +169,9 @@ src="data:<%= product.image.contentType %>;base64,<%= product.image.data.toStrin
         <h3><%= product.title %></h3>
 
         <p class="price">₹<%= product.price %></p>
-        
-        <form action="/user/cart/add/<%= product._id %>" method="post">
-        <%
-const isInCart = user.products.some(
-    item => item.toString() === product._id.toString()
-);
-%>
 
-<% if(isInCart) { %>
-    <button style="background-color: #fff;" >Carterd Successfully</button>
-<% } else { %>
-    <button>Add To Cart</button>
-<% } %>
+        <form action="/user/cart/delete/<%= product._id %>" method="post">
+          <button>Delete From Cart</button>
         </form>
 
       </div>

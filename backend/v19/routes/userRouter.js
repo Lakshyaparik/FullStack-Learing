@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {getProducts,createProduct} = require('../controllers/userController');
+const {getProducts,getCart,createProduct,getProfile,addToCart,deleteFromCart} = require('../controllers/userController');
 const { isLoggedIn } = require('../middlewares/isLoggedIn');
 const upload = require('../config/multerConfig')
 
@@ -11,11 +11,29 @@ router.get('/',(req,res)=>{
 router.get('/home',isLoggedIn,getProducts,(req,res)=>{
 })
 
+router.get('/cart',isLoggedIn,getCart,(req,res)=>{
+})
+
+router.get('/profile',isLoggedIn,getProfile,(req,res)=>{
+})
+
 router.get('/createProduct',isLoggedIn,(req,res)=>{
   res.render('createProduct')
 })
 
 router.post('/createProduct',isLoggedIn,upload.single('productImage'),createProduct,(req,res)=>{
+})
+
+router.get('/logout',(req,res)=>{
+  res.cookie('token','',{httpOnly:true})
+  res.redirect('/auth')
+})
+
+router.post('/cart/add/:productId',isLoggedIn,addToCart,(req,res)=>{
+})
+
+router.post('/cart/delete/:productId',isLoggedIn,deleteFromCart,(req,res)=>{
+
 })
 
 module.exports = router;
