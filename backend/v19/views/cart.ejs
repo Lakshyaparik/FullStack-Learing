@@ -149,6 +149,9 @@
       >Cart Page</h1>
      <nav class="navbar">
       <a href="/user/home"><li >Home</li></a>
+      <% if(user.role === 'owner') { %>
+        <a href="/user/createProduct"><li >Add Product</li></a>
+      <% } %>
       <a href="/user/cart"><li >Cart</li></a>
       <a href="/user/profile"><li >Profile</li></a>
       <a href="/user/logout"><li >Logout</li></a>

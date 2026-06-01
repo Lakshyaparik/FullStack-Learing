@@ -23,7 +23,7 @@ exports.createProduct = async(req,res)=>{
 exports.getCart = async(req,res)=>{
   const user = await userModel.findOne({email : req.user.email}).populate('products')
   const products = user.products;
-  res.render('cart',{products})
+  res.render('cart',{products,user})
 }
 exports.getProfile = async(req,res)=>{
   const user = await userModel.findOne({email : req.user.email})

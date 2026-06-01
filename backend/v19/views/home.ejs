@@ -67,8 +67,8 @@
         margin-top: 30px;
         width: 70%;
         padding: 30px;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        display: flex;
+        flex-flow: row wrap;
         gap: 25px;
       }
       .navbar{
@@ -162,6 +162,9 @@
     <div class="main">
      <nav class="navbar">
       <a href="/user/home"><li >Home</li></a>
+      <% if(user.role === 'owner') { %>
+        <a href="/user/createProduct"><li >Add Product</li></a>
+      <% } %>
       <a href="/user/cart"><li >Cart</li></a>
       <a href="/user/profile"><li >Profile</li></a>
       <a href="/user/logout"><li >Logout</li></a>
@@ -197,20 +200,31 @@ src="data:<%= product.image.contentType %>;base64,<%= product.image.data.toStrin
         <h3><%= product.title %></h3>
 
         <p class="price">₹<%= product.price %></p>
-        
-        <form action="/user/cart/add/<%= product._id %>" method="post">
-        <%
-const isInCart = user.products.some(
-    item => item.toString() === product._id.toString()
-);
-%>
 
-<% if(isInCart) { %>
-    <button style="background-color: #fff;" >Carterd Successfully</button>
-<% } else { %>
-    <button>Add To Cart</button>
+       <% if(user.role === 'user') { %>
+
+  <form action="/user/cart/add/<%= product._id %>" method="post">
+
+    <%
+      const isInCart = user.products.some(
+        item => item.toString() === product._id.toString()
+      );
+    %>
+
+    <% if(isInCart) { %>
+      <button style="background-color: #fff;">
+        Carted Successfully
+      </button>
+    <% } else { %>
+      <button>
+        Add To Cart
+      </button>
+    <% } %>
+
+  </form>
+
 <% } %>
-        </form>
+        
 
       </div>
 
