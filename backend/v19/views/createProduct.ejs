@@ -4,23 +4,92 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
+  <style>
+    body {
+      background-color: #f5f5f5;
+    }
+    a:hover {
+      color: red !important;
+    }
+    .container {
+      width: 100vw;
+      height: 100vh;
+    }
+   .navbar{
+        background: black;
+        display: flex;
+        list-style: none;
+        justify-content: flex-end;
+        gap: 20px;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        width: 30%;
+        display: flex;
+        gap: 50px;
+        padding: 15px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding-right: 30px;
+      }
+      .navbar a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+    form {
+      border: solid;
+      width: 500px;
+      height: 400px;
+      transform: translate(500px, 100px);
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      padding: 20px;
+      gap: 20px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+    }
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
   <body>
     <h1>Create Product</h1>
-    <form
-      action="/user/createProduct"
-      method="post"
-      enctype="multipart/form-data"
-    >
-      <label for="productImage">Product Image:</label>
-      <input type="file" id="productImage" name="productImage" required />
-      <br />
-      <label for="title">Title:</label>
-      <input type="text" id="title" name="title" required />
-      <br />
-      <label for="price">Price:</label>
-      <input type="number" id="price" name="price" required />
-      <br />
-      <input type="submit" value="Create Product" />
-    </form>
+    <div class="container">
+      <nav class="navbar">
+        <a href="/user/home"><li>Home</li></a>
+         <% if(user.role === 'owner') { %>
+        <a href="/user/createProduct"><li >AddProduct</li></a>
+      <% } %>
+        <a href="/user/cart"><li>Cart</li></a>
+        <a href="/user/profile"><li>Profile</li></a>
+        <a href="/user/logout"><li>Logout</li></a>
+      </nav>
+      <form
+        action="/user/createProduct"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <label for="productImage">Product Image:</label>
+        <input type="file" id="productImage" name="productImage" required />
+        <br />
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required />
+        <br />
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required />
+        <br />
+        <input type="submit" value="Create Product" />
+      </form>
+    </div>
   </body>
 </html>

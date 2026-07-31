@@ -6,6 +6,10 @@ exports.getProducts = async(req,res)=>{
   let user = await userModel.findOne({email : req.user.email})
   res.render('home',{products : owner.products , user})
 }
+exports.createProductPage = async(req,res)=>{
+  let user = await userModel.findOne({email : req.user.email})
+  res.render('createProduct',{user})
+}
 exports.createProduct = async(req,res)=>{
   let {title,price} = req.body;
   let createdProduct = await productModel.create({

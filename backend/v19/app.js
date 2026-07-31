@@ -16,7 +16,7 @@ app.use('/auth',authRouter)
 app.use('/user',userRouter)
 
 app.get('/',(req,res)=>{
-  res.render('index')
+  res.render('auth')
 })
 
 app.listen(3000);

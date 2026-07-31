@@ -30,6 +30,7 @@
       transform: translateX(600px);
     }
     .navbar {
+          background: black;
       display: flex;
       list-style: none;
       justify-content: flex-end;
@@ -71,6 +72,9 @@
       <h1 style="position: absolute; top: 10px; left: 30px">Cart Page</h1>
       <nav class="navbar">
         <a href="/user/home"><li>Home</li></a>
+         <% if(user.role === 'owner') { %>
+        <a href="/user/createProduct"><li >Add Product</li></a>
+      <% } %>
         <a href="/user/cart"><li>Cart</li></a>
         <a href="/user/profile"><li>Profile</li></a>
         <a href="/user/logout"><li>Logout</li></a>
@@ -81,6 +85,7 @@
         <div class="profiletxt">
           <h3>Name : <%= user.fullname %></h3>
           <h3>Email : <%= user.email %></h3>
+          <h4>Role : <%= user.role %></h4>
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore
             ab debitis accusamus ipsam, itaque similique placeat neque quae
