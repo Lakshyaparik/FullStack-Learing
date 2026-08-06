@@ -144,6 +144,7 @@
       }
     </style>
   </head>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <body>
     <div class="main">
       <h1 style="position:absolute;top:10px;left:30px;"
@@ -185,22 +186,46 @@ src="data:<%= product.image.contentType %>;base64,<%= product.image.data.toStrin
   <% }) %>
 
 </div>
+
+   <div class="totalPrice" style ="position:absolute;bottom:50px;right:50px;">
+      <h2>Total Price: ₹<%= totalPrice %></h2>
+        <button type="submit" id="buyNow">Buy Now</button>
+   </div>
+
     </div>
-
     <script>
-      function filterProducts(category) {
-        let cards = document.querySelectorAll(".card");
+      document.getElementById('buyNow').addEventListener('click',async(e)=>{
+        e.preventDefault();
+        const response = await fetch('/user/createOrder');
+        const order = await response.json();
+        console.log(order)
 
-        cards.forEach(function (card) {
-          if (category === "all") {
-            card.style.display = "block";
-          } else if (card.dataset.category === category) {
-            card.style.display = "block";
-          } else {
-            card.style.display = "none";
+        const options = {
+          key: 'rzp_test_TKzXMnd9sqaVIr', // Replace with your Razorpay API key
+          amount: order.amount,
+          currency: order.currency,
+          name: 'Your Company Name',
+          description: 'Test Transaction',
+          order_id: order.id,
+
+          handler: async function (response) {
+            const verifyResponse = await fetch('/payment/verifyPayment',{
+              method : 'POST',
+              headers :{
+                'Content-Type' : 'application/json'
+              },
+              body : JSON.stringify({
+                razorpay_payment_id : response.razorpay_payment_id,
+                razorpay_order_id : response.razorpay_order_id,
+                razorpay_signature : response.razorpay_signature
+              })
+            })            
+            // You can redirect the user to a success page or perform any other action here
           }
-        });
-      }
+        }
+        const razorpay = new Razorpay(options);
+        razorpay.open();
+      })
     </script>
   </body>
 </html>

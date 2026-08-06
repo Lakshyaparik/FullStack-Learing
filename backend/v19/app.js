@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 
 const authRouter = require('./routes/authRouter')
 const userRouter = require('./routes/userRouter')
+const paymentRouter = require('./routes/paymentRouter')
 
 
 app.set('view engine','ejs')
@@ -14,6 +15,8 @@ app.use(cookieParser())
 
 app.use('/auth',authRouter)
 app.use('/user',userRouter)
+app.use('/payment',paymentRouter)
+
 
 app.get('/',(req,res)=>{
   res.render('auth')
